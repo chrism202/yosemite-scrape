@@ -22,8 +22,8 @@ def page_scrape():
 
 	# return results
 	return {
-		'test': "test1",
-		'testy': "test2"
+		'test': "test999",
+		'testy': "test999"
 	}
 
 
@@ -39,5 +39,9 @@ def save_file_to_s3(bucket, file_name, data):
 def scrape(event, context):
   data = page_scrape()
   # fname=datetime.datetime.now()+""
-  file_name = "test"
+  now = datetime.datetime.now()
+  date_out = now.strftime("%Y-%m-%d-%Hh%Mm%Ss")
+  file_name = date_out
   save_file_to_s3('yose-daily-scrape', file_name, data)
+
+

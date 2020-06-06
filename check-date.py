@@ -207,8 +207,8 @@ available_trailheads = [x for x in all_month_trailheads if x not in not_availabl
 # pprint(all_month_trailheads)
 # pprint(len(all_month_trailheads))
 
-pprint(available_trailheads)
-pprint(len(available_trailheads))
+# pprint(available_trailheads)
+# pprint(len(available_trailheads))
 
 # pprint(not_available_trailheads)
 # pprint(len(not_available_trailheads))
@@ -220,6 +220,13 @@ pprint(len(available_trailheads))
 # pprint(len(master_list))
 
 # exit()
+
+
+# now = datetime.datetime.now()
+# date_out = now.strftime("%Y-%m-%d-%Hh%Mm%Ss")
+# # print("date and time:",date_time)	
+
+# pprint(date_out)
 
 
 
