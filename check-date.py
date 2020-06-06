@@ -135,7 +135,7 @@ master_list = generate_master_list()
 
 
 # June 16th
-input_date=datetime.datetime(2020,6,16)
+input_date=datetime.datetime(2020,6,6)
 
 day_temp=[]
 my_date=[]
@@ -163,119 +163,63 @@ my_date.append(day_temp)
 # search through the entire master list and crate a new list with all of the available trailheads
 
 available_trailheads=[]
+not_available_trailheads=[]
+all_month_trailheads=[]
 
 for trail_index in master_list:
 	if trail_index[1] == my_date[1]:
-		# available_trailheads.append(trail_index)
+		# They are in the right month...
+		all_month_trailheads.append(trail_index)
 		for day_array_index in trail_index[2]:
 			if day_array_index == my_date[2][0]:
-				available_trailheads.append(trail_index)
+				not_available_trailheads.append(trail_index)
 				pass
+				# not_available_trailheads.append(trail_index)
 
 		# need to check that day item exists in day array
 
 		pass
 	pass
 
+# not_available_trailheads = list(dict.fromkeys(not_available_trailheads))
+# not_available_trailheads = dict.fromkeys(not_available_trailheads)
+
+# newlist=[]
+
+# for i in not_available_trailheads:
+#   if i not in newlist:
+#     newlist.append(i)
+
 
 
 # it does exist which means that I *cannot* book it...
 
-# temp=list(set(long_list) - set(my_trail_dates_index[2]))
+# available_trailheads=list(all_month_trailheads - not_available_trailheads)
+
+available_trailheads = [x for x in all_month_trailheads if x not in not_available_trailheads]
 
 
 
 
 # output the full list of trailheads in an easy to read format
 
+
+# pprint(all_month_trailheads)
+# pprint(len(all_month_trailheads))
+
 pprint(available_trailheads)
 pprint(len(available_trailheads))
 
-
-exit()
-
-
+# pprint(not_available_trailheads)
+# pprint(len(not_available_trailheads))
 
 
+# pprint(newlist)
+# pprint(len(newlist))
 
+# pprint(len(master_list))
 
-
-
-
-
-
-
-my_trail="Cathedral Lakes"
-index=0
-my_trail_dates=[]
-
-for date_index in master_list:
-	# pprint(date_index[0])
-	if date_index[0] == my_trail:
-		my_trail_dates.append(master_list[index])
-
-	index=index+1
-
-
-# Now we have a list of all of the dates that are fully booked (my_trail_dates), we need to understand which dates are free!
-
-# What is the earliest date? (fixed)
-
-# What is the latest date? (calculate)
-# ... get the report date and add XXX many days to it
-
-
-# Put all of the months into a list and compare it to a complete list of months
-
-short_list=['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30']
-# Months that have 31 days are: January, March, May, July, August, October, December
-long_list=['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
-free_dates_list=[]
-
-for my_trail_dates_index in my_trail_dates:
-	free_dates_list_temp=[]
-	# pprint(my_trail_dates_index)
-	if my_trail_dates_index[1]=="May" or my_trail_dates_index[1]=="July" or my_trail_dates_index[1]=="August" or my_trail_dates_index[1]=="October":
-		# do something
-		# pprint("I got here")
-		free_dates_list_temp.append(my_trail_dates_index[1])
-		temp=list(set(long_list) - set(my_trail_dates_index[2]))
-		temp.sort(key=int)
-		free_dates_list_temp.append(temp)
-		free_dates_list.append(free_dates_list_temp)
-	else:
-		# do something else
-		# pprint("Oops")
-		free_dates_list_temp.append(my_trail_dates_index[1])
-		# free_dates_list_temp.append(list(set(short_list) - set(my_trail_dates_index[2])))
-		temp=list(set(short_list) - set(my_trail_dates_index[2]))
-		temp.sort(key=int)
-		free_dates_list_temp.append(temp)
-		free_dates_list.append(free_dates_list_temp)
-
-# free_dates_list.sort(key=int)
- 
-# pprint(my_trail_dates[3])
-pprint(free_dates_list)
-
-
-# We now have a list of dates that a trailhead is free (free_dates_list)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# exit()
 
 
 
