@@ -31,3 +31,29 @@ serverless invoke -f yose_scrape
 
 
 Congratulations - you have ran the code. Check your S3 bucket for an updated dump.
+
+
+## Pushing to GitHub
+
+
+#### Step 1 - Add all of the updated code
+
+```
+git add .
+```
+
+#### Step 2 - Commit the changes & add commentary
+
+```
+git commit -m "Some insightful comment"
+```
+
+
+#### Step 3 - Push the changes to github
+
+```
+git push -u origin master
+```
+
+
+Congratulations - you have not only ran the code but you have also commited it to GitHub so everybody can see how amazing you are at writing 'unpythonic' code.

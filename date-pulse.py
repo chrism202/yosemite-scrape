@@ -15,6 +15,10 @@ soup = BeautifulSoup(page.content, 'html.parser')
 results = soup.find(id='cs_control_5529617')
 results = results.find(class_="Component text-content-size text-content-style ArticleTextGroup clearfix")
 
+print(results)
+
+exit()
+
 
 
  # -- Check the format of the update ---

@@ -134,8 +134,9 @@ master_list = generate_master_list()
 # pprint(master_list[0])
 
 
-# June 16th
-input_date=datetime.datetime(2020,6,6)
+# July 18th
+# Year, month, day?
+input_date=datetime.datetime(2020,7,18)
 
 day_temp=[]
 my_date=[]
@@ -207,7 +208,7 @@ available_trailheads = [x for x in all_month_trailheads if x not in not_availabl
 # pprint(all_month_trailheads)
 # pprint(len(all_month_trailheads))
 
-# pprint(available_trailheads)
+pprint(available_trailheads)
 # pprint(len(available_trailheads))
 
 # pprint(not_available_trailheads)
