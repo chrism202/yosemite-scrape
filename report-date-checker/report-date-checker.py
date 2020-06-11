@@ -34,10 +34,17 @@ def main(event, context):
 	print('DB date: ', db_date)
 	print('Report date type: ', type(db_date))
 
+
+	sns_client = boto3.client('sns', region_name="us-east-1")
+	csm_phone_number = "+18572057003"
+
+
 	if report_date > db_date:
 		update_database(report_date, table)
-		send_alert()
+		send_alert(sns_client,csm_phone_number,"Database updated")
 		pass
+	else:
+		send_alert(sns_client,csm_phone_number,"Program ran but report wasn't updated")
 
 
 	return
@@ -112,17 +119,21 @@ def update_database(report_date, table):
 
 	table.put_item(Item=data_to_load)
 
-	pprint("Database has been updated")
+	print("Database has been updated")
 
 
 
 
-def send_alert():
+def send_alert(client,number,message):
 
 	# In this function we will send the alert through AWS services like SES or SQS
 
-	pprint("Alert has been sent")
+	client.publish(
+    	PhoneNumber=number,
+    	Message=message
+	)
 
+	print("Alert has been sent")
 
 
 # Uncomment the below line for local testing
