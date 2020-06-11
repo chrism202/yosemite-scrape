@@ -17,7 +17,6 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 import json
 
-from boto3.dynamodb.conditions import Key, Attr
 
 
 
@@ -72,16 +71,27 @@ def connect_to_db(region_name, table_name):
 
 def get_db_date(table):
 
-	# Create a dummy date until we get the database connected
-	# db_date = datetime(2020,6,6)  #Datetime is year,month,day
+	# Retrieve all DB objects
+	x = table.scan()
 
-	response = table.query(
-    	KeyConditionExpression=Key('entry').eq('latest_entry_identifier'))
-	# items = response['Items']
-	print(response)
+	items = x['Items']
 
-	exit()
-	
+	# Set a temporary variable that will be updated in the loop
+	most_recent={'EntryID': datetime(1900,1,1),'ReportDate': ''}
+
+	for i in items:
+
+		# Convert all EntryIDs into datetime objects for comparison
+		i['EntryID'] = datetime.strptime(i['EntryID'],'%Y-%m-%d %H:%M:%S.%f')
+
+		if i['EntryID']>=most_recent['EntryID']:
+			most_recent=i
+			pass
+		
+		db_date = most_recent['ReportDate']
+
+		pass
+
 	return db_date
 
 
