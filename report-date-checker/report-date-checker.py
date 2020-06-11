@@ -24,9 +24,15 @@ import json
 def main(event, context):
 	report_date = get_report_date()
 
+	print('Report date: ', report_date)
+	print('Report date type: ', type(report_date))
+
 	table = connect_to_db('us-east-1', 'yose-trailhead-report-dates')
 
 	db_date = get_db_date(table)
+
+	print('DB date: ', db_date)
+	print('Report date type: ', type(db_date))
 
 	if report_date >= db_date:
 		update_database(report_date, table)
@@ -34,8 +40,9 @@ def main(event, context):
 		pass
 
 
-	print(report_date)
-	print(db_date)
+	print('FIN')
+	# print(report_date)
+	# print(db_date)
 
 
 
@@ -87,10 +94,10 @@ def get_db_date(table):
 		if i['EntryID']>=most_recent['EntryID']:
 			most_recent=i
 			pass
-		
-		db_date = most_recent['ReportDate']
 
 		pass
+
+	db_date = datetime.strptime(most_recent['ReportDate'],'%Y-%m-%d %H:%M:%S')
 
 	return db_date
 
