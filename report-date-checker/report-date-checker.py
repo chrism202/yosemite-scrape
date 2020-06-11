@@ -17,6 +17,7 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 import json
 
+from boto3.dynamodb.conditions import Key, Attr
 
 
 
@@ -72,7 +73,14 @@ def connect_to_db(region_name, table_name):
 def get_db_date(table):
 
 	# Create a dummy date until we get the database connected
-	db_date = datetime(2020,6,8)  #Datetime is year,month,day
+	# db_date = datetime(2020,6,6)  #Datetime is year,month,day
+
+	response = table.query(
+    	KeyConditionExpression=Key('entry').eq('latest_entry_identifier'))
+	# items = response['Items']
+	print(response)
+
+	exit()
 	
 	return db_date
 
@@ -87,9 +95,9 @@ def update_database(report_date, table):
 		'ReportDate': str(report_date)
 	}
 
-	table.put_item(Item=data_to_load)
+	# table.put_item(Item=data_to_load)
 
-	pprint("Database has been updated")
+	pprint("Database has been updated (not really)")
 
 
 
