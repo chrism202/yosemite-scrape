@@ -34,15 +34,13 @@ def main(event, context):
 	print('DB date: ', db_date)
 	print('Report date type: ', type(db_date))
 
-	if report_date >= db_date:
+	if report_date > db_date:
 		update_database(report_date, table)
 		send_alert()
 		pass
 
 
-	print('FIN')
-	# print(report_date)
-	# print(db_date)
+	return
 
 
 
@@ -112,9 +110,9 @@ def update_database(report_date, table):
 		'ReportDate': str(report_date)
 	}
 
-	# table.put_item(Item=data_to_load)
+	table.put_item(Item=data_to_load)
 
-	pprint("Database has been updated (not really)")
+	pprint("Database has been updated")
 
 
 
@@ -128,5 +126,6 @@ def send_alert():
 
 
 # Uncomment the below line for local testing
-main("hello", "world")
-# update_database()
+# main("hello", "world")
+
+
